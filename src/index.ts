@@ -3,9 +3,15 @@ require("dotenv").config();
 import DB from "./db";
 const app: Application = express();
 
+const PORT = process.env.PORT || 5000
+
 app.use(express.json());
 
 const db = new DB();
+
+app.get("/", (req: Request, res: Response) => {
+    res.send("Nothing here.")
+})
 
 app.get("/document/:id", (req: Request, res: Response) => {
     const id = req.params.id;
@@ -53,6 +59,6 @@ app.post("/document", (req: Request, res: Response) => {
     });
 });
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log("Server is running on port 5000");
 });
